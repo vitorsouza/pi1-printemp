@@ -6,6 +6,7 @@ import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
+import com.github.lalyos.jfiglet.FigletFont;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -14,7 +15,6 @@ public class App {
 
     public static void main( String[] args ) throws Exception {
         String jsonContent = null;
-
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpGet httpGet = new HttpGet(URL);
             try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
@@ -27,6 +27,7 @@ public class App {
         JsonObject currentWeather = infoMeteo.getAsJsonObject("current_weather");
         double temperature = currentWeather.get("temperature").getAsDouble();
         
-        System.out.println(temperature);
+        String asciiBanner = FigletFont.convertOneLine(temperature + "°C");
+        System.out.println(asciiBanner);
     }
 }
