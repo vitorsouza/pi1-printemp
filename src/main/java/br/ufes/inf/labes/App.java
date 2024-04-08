@@ -6,6 +6,8 @@ import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class App {
     private static final String URL = "https://api.open-meteo.com/v1/forecast?latitude=-20.27&longitude=-40.31&current_weather=true&forecast_days=1&timezone=America%2FSao_Paulo";
@@ -21,6 +23,10 @@ public class App {
             }
         }
 
-        System.out.println(jsonContent);
+        JsonObject infoMeteo = JsonParser.parseString(jsonContent).getAsJsonObject();
+        JsonObject currentWeather = infoMeteo.getAsJsonObject("current_weather");
+        double temperature = currentWeather.get("temperature").getAsDouble();
+        
+        System.out.println(temperature);
     }
 }
