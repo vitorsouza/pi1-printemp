@@ -6,7 +6,7 @@
 
   <groupId>br.ufes.inf.labes</groupId>
   <artifactId>printemp</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
 
   <name>printemp</name>
   <url>https://github.com/vitorsouza/printemp/</url>
